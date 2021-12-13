@@ -1,0 +1,102 @@
+/* * {
+    margin: 0;
+    box-sizing: border-box;
+} */
+
+/* html {
+    border: 1px solid blue;
+    padding: 10px;
+    width: auto;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #C9A688, #a1c0b2);
+} */
+
+.mydropdown {
+    display: flex;
+    width: 220px;
+    flex-direction: column;
+}
+
+.mydropdown>:first-child {
+    background: #2f3642;
+    color: #f5f6fa;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+
+    order: 1;
+}
+
+.selected {
+    background: #2f3642;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    color: white;
+    position: relative;
+    font-size: 16px;
+
+    order: 0;
+}
+
+.selected::after {
+
+    content: "";
+    background: url("../static/arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 5px;
+    transition: all 0.4s;
+}
+
+.mydropdown>:first-child.active {
+    max-height: 220px;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.mydropdown>:first-child.active+.selected::after {
+
+    transform: rotateX(180deg);
+    top: -6px;
+}
+
+.mydropdown>:first-child::-webkit-scrollbar {
+    width: 8px;
+    background: black;
+    border-radius: 0 8px 8px 0;
+}
+
+.mydropdown>:first-child::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px
+}
+
+.mydropdown>div div,
+/* .mydropdown .option, */
+.selected {
+    padding: 6% 20%;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* .mydropdown .option:hover { */
+.mydropdown>div div:hover {
+    background: #414b57;
+}
+
+.mydropdown label {
+    cursor: pointer;
+}
+
+/* .mydropdown .option .radio { */
+.mydropdown>div div .radio {
+    display: none;
+}

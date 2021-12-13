@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/mydropdown.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script>
+        $(() => {
+            $("#datepicker").datepicker({
+                minDate: new Date(),
+                dateFormat: 'yy-mm-dd',
+            });
+            $('#datepicker').datepicker('setDate', new Date());
+        });
+    </script>
+    <style>
+        html {
+            width: auto;
+            height: 250vh;
+            background: linear-gradient(to bottom right, #C9A688, #a1c0b2);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .datepicker {
+            background: #2f3642;
+            color: white;
+            border-radius: 8px;
+            padding: 6% 11%;
+            width: 78%;
+            text-align: center;
+            border: none;
+        }
+
+        .datepicker:hover {
+            cursor: pointer;
+        }
+
+        .confirm {
+            background: #2f3642;
+            color: white;
+            border-radius: 8px;
+            padding: 5% 38%;
+            font-size: 16px;
+            border: none;
+        }
+
+        .confirm:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="container" id="information" method="POST" action="{{url_for('search')}}">
+        <div>
+            <input type="text" name="startstation" id="input_startstation" value="" hidden>
+            <h1>起點</h1>
+            <div class="mydropdown">
+                <div>
+                </div>
+                <div class="selected" id="startstation">--</div>
+
+            </div>
+        </div>
+
+        <div>
+            <input type="text" name="endstation" id="input_endstation" value="" hidden>
+            <h1>終點</h1>
+            <div class="mydropdown">
+                <div>
+                </div>
+                <div class="selected" id="endstation">--</div>
+            </div>
+        </div>
+
+        <div>
+            <input type="text" name="datepicker" id="input_datepicker" value="" hidden>
+            <h1>日期</h1>
+            <input type="text" class="datepicker" id="datepicker" onfocus="blur();">
+        </div>
+
+        <div>
+            <input type="text" name="time" id="input_time" value="" hidden>
+            <h1>時間</h1>
+            <div class="mydropdown" id="thelist">
+                <div>
+                </div>
+                <div class="selected" id="time">--</div>
+            </div>
+        </div>
+
+        <div>
+            <h1>確認</h1>
+            <input type="button" id="confirm" class="confirm" value="confirm">
+        </div>
+        </dorm>
+        </div>
+        <script src="{{ url_for('static', filename='../static/mydropdown.js') }}"></script>
+        <script>
+
+
+            // window.addEventListener('load', () => {
+            //     dropdown_start()
+            // })
+
+            const btn_submit = document.querySelector('#confirm')
+            const form = document.querySelector('#information')
+
+            btn_submit.addEventListener('click', () => {
+                document.querySelector('#input_startstation').value = document.querySelector('#startstation').innerHTML;
+                document.querySelector('#input_endstation').value = document.querySelector('#endstation').innerHTML;
+                document.querySelector('#input_datepicker').value = document.querySelector('.datepicker').value
+                document.querySelector('#input_time').value = document.querySelector('#time').innerHTML
+                form.submit()
+            })
+
+        </script>
+</body>
+
+</html>
