@@ -32,7 +32,7 @@ def search():
     rideDate = '{}/{}/{}'.format(currentdate.split('-')
                                  [0], currentdate.split('-')[1], currentdate.split('-')[2])
     payload = {
-        '_csrf': csrf,
+        # '_csrf': csrf,
         'startStation': startstation,
         'endStation': endstation,
         'transfer': 'ONE',
@@ -41,8 +41,9 @@ def search():
         'startTime': currenttime,
         'endTime': '23:59',
         'trainTypeList': 'ALL',
-        '_isQryEarlyBirdTrn': 'on',
-        'query': '查詢'
+        '_isQryEarlyBirdTrn': 'false',
+        'transWaitTimeMaxByMinute':20,
+        # 'query': '查詢'
     }
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -58,7 +59,7 @@ def search():
             "tr", class_="trip-column")
     except:
         return "<h1>no result</h1>"
-
+    
     allinfo = []
 
     for item in txt_content:
